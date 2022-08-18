@@ -238,7 +238,7 @@ const totalPrice = computed(() =>
 				color: #fff;
 				background-color: rgb(201, 95, 81);
 			}
-			&:active {
+			&:not(:disabled):active {
 				transform: translateY(-0.24rem);
 			}
 			&:disabled {
