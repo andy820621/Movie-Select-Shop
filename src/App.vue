@@ -65,6 +65,13 @@ function controlHandler(e) {
 	if (e.target !== document.querySelector(".control")) return;
 	data.isCartOpen = !data.isCartOpen;
 }
+function cartHandler(i, name) {
+	data.cart.splice(i, 1);
+	const index = data.movies.map((movie) => movie.name).indexOf(name);
+	document
+		.querySelectorAll(".card")
+		[index].querySelector("button").disabled = false;
+}
 // watch
 watch(data.cart, () => {
 	gsap.from(".fa-cart-shopping", 0.3, { scale: 0.5 });
@@ -123,7 +130,9 @@ const totalPrice = computed(() =>
 					<h3>
 						{{ movie.name }}
 						<div class="price">{{ movie.price }}$</div>
-						<button class="remove" @click="data.cart.splice(i, 1)">一</button>
+						<button class="remove" @click="cartHandler(i, movie.name)">
+							一
+						</button>
 					</h3>
 				</li>
 				<h3 v-if="!data.cart.length" class="empty">Your cart is empty...</h3>
@@ -244,6 +253,7 @@ const totalPrice = computed(() =>
 			&:disabled {
 				background-color: rgba(0, 0, 0, 0.3);
 				color: #eee;
+				cursor: not-allowed;
 			}
 		}
 	}
@@ -375,6 +385,7 @@ const totalPrice = computed(() =>
 		background-color: rgb(255 255 255 / 0.1);
 		color: #eee;
 		font-size: 2rem;
+		cursor: pointer;
 		transition: 0.3s;
 		transform: scaleX(1.3);
 		&:hover {
