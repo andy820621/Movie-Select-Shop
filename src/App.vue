@@ -20,30 +20,16 @@ axios.get(apiUrl).then((res) => {
 // methods
 function wheelHandler(e) {
 	let delta = e.deltaY ? e.deltaY * 2 : -e.deltaX * 2;
-	if (delta > 200) delta = 200;
-	if (delta < -200) delta = -200;
+	let animation = gsap.to(cardsContainer.value, {
+		left: `+=${delta}px`,
+	});
 	if (
-		cardsContainer.value.getBoundingClientRect().left >
-		window.innerWidth / 2 - 100
-	) {
-		gsap.to(cardsContainer.value, {
-			duration: 0.01,
-			left: `+=${-10}px`,
-		});
-	} else if (
-		cardsContainer.value.getBoundingClientRect().right <
-		window.innerWidth / 2 + 100
-	) {
-		gsap.to(cardsContainer.value, {
-			duration: 0.01,
-			left: `+=${10}px`,
-		});
-	} else {
-		gsap.to(cardsContainer.value, {
-			duration: 0.3,
-			left: `+=${delta}px`,
-		});
-	}
+		cardsContainer.value.getBoundingClientRect().left + delta >
+			window.innerWidth / 2 - 240 ||
+		cardsContainer.value.getBoundingClientRect().right + delta <
+			window.innerWidth / 2 + 240
+	)
+		animation.pause();
 }
 function addToCart(movie, e) {
 	e.target.disabled = true;
@@ -169,7 +155,7 @@ const totalPrice = computed(() =>
 	align-items: center;
 	height: 100%;
 	margin: 0 20vw;
-	transition: 0.3s, left 0.08s;
+	transition: 0.3s, left 0s;
 	position: relative;
 	&.isCartOpen {
 		transform: scale(0.8);
