@@ -1,5 +1,5 @@
 {
-	"name": "coffee_cup",
+	"name": "movie-select-shop",
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite --host",

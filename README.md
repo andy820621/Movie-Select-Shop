@@ -4,7 +4,7 @@ Use Vue3, Gsap, Axios to build this Website, ans use Scss as css preprocessor, a
 
 ## Website
 
-Go to [Website](https://movie-select-shop.vercel.app/) to enjoy this little game.
+Go to [Website](https://movie-select-shop.vercel.app/) to enjoy this little App.
 
 ## Project Setup
 
